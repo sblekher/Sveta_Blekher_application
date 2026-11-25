@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ArrowRight,
   ArrowUpRight,
   Camera,
   Film,
   Globe,
-  Network,
-  Users,
 } from 'lucide-react';
 import {
   INDEPENDENT_DOCUMENTARY_PROJECT,
   SCALING_GLOBAL_OPERATIONS,
-  type EcosystemNode,
 } from '../data/portfolioData';
 
 interface ScalingGlobalOpsCardProps {
@@ -23,12 +20,6 @@ export const ScalingGlobalOpsCard: React.FC<ScalingGlobalOpsCardProps> = ({
   onExploreExperience,
   onOpenMarketplaceSpotlight,
 }) => {
-  const [selectedNodeId, setSelectedNodeId] = useState<EcosystemNode['id']>('platform');
-
-  const activeNode =
-    SCALING_GLOBAL_OPERATIONS.ecosystemNodes.find((n) => n.id === selectedNodeId) ??
-    SCALING_GLOBAL_OPERATIONS.ecosystemNodes[2];
-
   return (
     <section
       aria-labelledby="scaling-global-ops-heading"
@@ -71,142 +62,18 @@ export const ScalingGlobalOpsCard: React.FC<ScalingGlobalOpsCardProps> = ({
         </div>
       </div>
 
-      {/* Main Narrative + Illustrative Ecosystem Relationship Diagram */}
-      <div className="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-        <div className="lg:col-span-6 space-y-3 text-[14px] leading-[1.6] text-[#3F3C39]">
-          <p>{SCALING_GLOBAL_OPERATIONS.mainCopy}</p>
-          <p className="text-[13.5px] text-[#55524E] rounded-[10px] bg-[#EFECE7] border border-black/[0.06] px-3.5 py-3">
-            {SCALING_GLOBAL_OPERATIONS.marketplaceNote}
+      {/* Balanced Two-Column Narrative Row on Desktop, Cleanly Stacked on Mobile */}
+      <div className="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch">
+        <div className="lg:col-span-6 flex items-center">
+          <p className="text-[14.5px] leading-[1.64] text-[#3F3C39]">
+            {SCALING_GLOBAL_OPERATIONS.mainCopy}
           </p>
         </div>
 
-        {/* Illustrative Interactive Ecosystem Relationship Diagram */}
-        <div className="lg:col-span-6 rounded-[12px] bg-[#EFECE7] border border-black/[0.07] p-4">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-            <span className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#1E1C1A]">
-              <Network className="w-3.5 h-3.5 text-[#EE6A1F]" />
-              <span>Interconnected ecosystem view</span>
-            </span>
-            <span className="text-[11px] text-[#77736E]">
-              Illustrative relationship · Click a group
-            </span>
-          </div>
-
-          {/* 3-Row Connected Relationship Map: Customers & Providers -> Marketplace Platform -> Cross-Functional Teams */}
-          <div className="space-y-2">
-            {/* Top Pair: Global Customers <-> Professional Service Providers */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {SCALING_GLOBAL_OPERATIONS.ecosystemNodes.slice(0, 2).map((node) => {
-                const isSelected = node.id === selectedNodeId;
-                return (
-                  <button
-                    key={node.id}
-                    type="button"
-                    onClick={() => setSelectedNodeId(node.id)}
-                    className={`rounded-[9px] px-3 py-2 text-left border transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#EE6A1F] ${
-                      isSelected
-                        ? 'bg-[#2A2624] text-[#FAF9F6] border-[#2A2624]'
-                        : 'bg-[#FAF9F6] text-[#1E1C1A] border-black/[0.08] hover:border-black/[0.2]'
-                    }`}
-                  >
-                    <span className="block text-[12.5px] font-medium">
-                      {node.label}
-                    </span>
-                    <span
-                      className={`block text-[11px] mt-0.5 ${
-                        isSelected ? 'text-[#D6D2CB]' : 'text-[#77736E]'
-                      }`}
-                    >
-                      {node.role}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Subtle Connector Row */}
-            <div
-              aria-hidden="true"
-              className="flex items-center justify-center gap-12 text-[11px] text-[#9A9690] leading-none py-0.5"
-            >
-              <span>↓</span>
-              <span className="font-mono-tabular text-[10.5px] text-[#77736E]">
-                connected via
-              </span>
-              <span>↓</span>
-            </div>
-
-            {/* Center Node: Marketplace Platform */}
-            {(() => {
-              const platformNode = SCALING_GLOBAL_OPERATIONS.ecosystemNodes[2];
-              const isSelected = selectedNodeId === platformNode.id;
-              return (
-                <button
-                  type="button"
-                  onClick={() => setSelectedNodeId(platformNode.id)}
-                  className={`w-full rounded-[9px] px-3.5 py-2.5 text-left border transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#EE6A1F] flex flex-wrap items-center justify-between gap-2 ${
-                    isSelected
-                      ? 'bg-[#FAF9F6] text-[#1E1C1A] border-[#EE6A1F] shadow-sm'
-                      : 'bg-[#FAF9F6]/85 text-[#1E1C1A] border-black/[0.08] hover:border-black/[0.2]'
-                  }`}
-                >
-                  <div>
-                    <span className="text-[13px] font-semibold">
-                      {platformNode.label}
-                    </span>
-                    <span className="block text-[11px] text-[#77736E]">
-                      {platformNode.role}
-                    </span>
-                  </div>
-                  <span className="font-mono-tabular text-[11.5px] font-medium text-[#EE6A1F]">
-                    36+ languages
-                  </span>
-                </button>
-              );
-            })()}
-
-            <div
-              aria-hidden="true"
-              className="flex items-center justify-center text-[10.5px] text-[#77736E] py-0.5"
-            >
-              ↑ supported &amp; localized by ↑
-            </div>
-
-            {/* Bottom Node: Internal Cross-Functional Teams */}
-            {(() => {
-              const teamNode = SCALING_GLOBAL_OPERATIONS.ecosystemNodes[3];
-              const isSelected = selectedNodeId === teamNode.id;
-              return (
-                <button
-                  type="button"
-                  onClick={() => setSelectedNodeId(teamNode.id)}
-                  className={`w-full rounded-[9px] px-3.5 py-2 text-left border transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#EE6A1F] flex flex-wrap items-center justify-between gap-2 ${
-                    isSelected
-                      ? 'bg-[#2A2624] text-[#FAF9F6] border-[#2A2624]'
-                      : 'bg-[#FAF9F6] text-[#1E1C1A] border-black/[0.08] hover:border-black/[0.2]'
-                  }`}
-                >
-                  <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium">
-                    <Users className="w-3.5 h-3.5 text-[#EE6A1F]" />
-                    {teamNode.label}
-                  </span>
-                  <span
-                    className={`text-[11px] ${
-                      isSelected ? 'text-[#D6D2CB]' : 'text-[#77736E]'
-                    }`}
-                  >
-                    {teamNode.role}
-                  </span>
-                </button>
-              );
-            })()}
-          </div>
-
-          {/* Active Node Operational Focus Readout */}
-          <div className="mt-3 pt-2.5 border-t border-black/[0.07] text-[12.5px] leading-[1.48] text-[#35322F]">
-            <span className="font-semibold text-[#1E1C1A]">{activeNode.label}: </span>
-            {activeNode.focus}
-          </div>
+        <div className="lg:col-span-6 rounded-[12px] bg-[#EFECE7] border border-black/[0.06] px-4 py-3.5 flex items-center">
+          <p className="text-[13.5px] leading-[1.58] text-[#4F4C48]">
+            {SCALING_GLOBAL_OPERATIONS.marketplaceNote}
+          </p>
         </div>
       </div>
 
@@ -228,28 +95,28 @@ export const ScalingGlobalOpsCard: React.FC<ScalingGlobalOpsCardProps> = ({
 };
 
 /* -------------------------------------------------------------------------- */
-/* Independent Documentary Project                                            */
+/* Beyond the CV — Personal Card                                              */
 /* -------------------------------------------------------------------------- */
 export const BeyondTheCvCard: React.FC = () => {
   return (
     <section
-      aria-labelledby="documentary-project-heading"
+      aria-labelledby="beyond-cv-heading"
       className="bento-card p-5 sm:p-6"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
-        {/* Left: Independent Documentary Project Intro */}
+        {/* Left: Beyond the CV Narrative */}
         <div className="lg:col-span-7 min-w-0">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-[5px] rounded-[8px] bg-[#E9E6E1] text-[#4A4743] text-[12px] font-medium leading-none mb-2.5">
             <Film className="w-3.5 h-3.5 text-[#EE6A1F]" />
             <span>{INDEPENDENT_DOCUMENTARY_PROJECT.eyebrow}</span>
           </div>
           <h2
-            id="documentary-project-heading"
+            id="beyond-cv-heading"
             className="text-[21px] sm:text-[23px] font-semibold tracking-[-0.02em] text-[#1E1C1A]"
           >
             {INDEPENDENT_DOCUMENTARY_PROJECT.title}
           </h2>
-          <p className="text-[14.5px] sm:text-[15px] leading-[1.6] text-[#3F3C39] max-w-[640px] mt-2">
+          <p className="text-[14.5px] sm:text-[15px] leading-[1.62] text-[#3F3C39] max-w-[640px] mt-2">
             {INDEPENDENT_DOCUMENTARY_PROJECT.description}
           </p>
         </div>

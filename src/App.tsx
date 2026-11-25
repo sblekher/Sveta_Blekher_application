@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Camera,
   Check,
   Download,
   ExternalLink,
   Mail,
-  RotateCcw,
   X,
 } from 'lucide-react';
 import {
@@ -27,7 +25,8 @@ import {
 } from './components/GlobalOpsAndBeyond';
 import { FullCvDrawer, PrintableCv } from './components/FullCvDrawer';
 
-const AVATAR_STORAGE_KEY = 'sveta_cv_avatar_dataurl_v1';
+const PROFILE_PHOTO_SRC =
+  '/assets/aistudio/Warm_Veranda_Portrait_of_a_Smiling_Woman_c21f8431.png';
 
 type DetailModalType =
   | null
@@ -40,15 +39,6 @@ export default function App() {
   const { nowSec, reducedMotion } = useMasterClock();
 
   const [activeLocale, setActiveLocale] = useState<PitchLocaleCode>('en');
-
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(() => {
-    try {
-      return localStorage.getItem(AVATAR_STORAGE_KEY);
-    } catch {
-      return null;
-    }
-  });
-  const avatarInputRef = useRef<HTMLInputElement | null>(null);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [focusRoleId, setFocusRoleId] = useState<string | null>(null);
@@ -68,35 +58,6 @@ export default function App() {
   const haloCycle = reducedMotion ? 0 : (nowSec % 1.8) / 1.8;
   const haloScale = 1 + haloCycle * 1.4;
   const haloOpacity = reducedMotion ? 0 : (1 - haloCycle) * 0.55;
-
-  const handleAvatarFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    e.target.value = '';
-    if (!file || !file.type.startsWith('image/')) return;
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = typeof reader.result === 'string' ? reader.result : null;
-      if (!result) return;
-      setAvatarUrl(result);
-      try {
-        localStorage.setItem(AVATAR_STORAGE_KEY, result);
-      } catch {
-        // Ignore storage quota issues for large raw images
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleClearAvatar = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setAvatarUrl(null);
-    try {
-      localStorage.removeItem(AVATAR_STORAGE_KEY);
-    } catch {
-      // Ignore storage access errors
-    }
-  };
 
   const handleOpenRoleInDrawer = (roleId: string) => {
     setFocusRoleId(roleId);
@@ -122,61 +83,14 @@ export default function App() {
 
   const avatarTileContent = (
     <div
-      role="button"
-      tabIndex={0}
-      onClick={() => avatarInputRef.current?.click()}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          avatarInputRef.current?.click();
-        }
-      }}
-      aria-label={
-        avatarUrl
-          ? 'Change profile photo'
-          : 'Upload profile photo (currently showing SB monogram)'
-      }
-      title="Click to upload your photo"
-      className="group relative w-full h-full rounded-[14px] bg-[#EE6A1F] overflow-hidden cursor-pointer border border-black/[0.08] select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E1C1A]"
-      style={{ boxShadow: '0 4px 18px rgba(238, 106, 31, 0.16)' }}
+      className="relative w-full h-full rounded-[14px] bg-[#E8E4DC] overflow-hidden border border-black/[0.08] select-none"
+      style={{ boxShadow: '0 4px 18px rgba(30, 28, 26, 0.08)' }}
     >
-      {avatarUrl ? (
-        <img
-          src={avatarUrl}
-          alt={CANDIDATE_PROFILE.name}
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-top"
-        />
-      ) : (
-        <div className="w-full h-full flex flex-col items-center justify-center text-[#FAF9F6] relative">
-          <div
-            aria-hidden="true"
-            className="absolute inset-3 rounded-[9px] border border-white/22 pointer-events-none"
-          />
-          <span className="text-[40px] sm:text-[48px] lg:text-[72px] font-medium tracking-[-0.04em] leading-none">
-            {CANDIDATE_PROFILE.monogram}
-          </span>
-        </div>
-      )}
-
-      <div className="absolute inset-0 bg-[#1E1C1A]/55 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-150 flex flex-col items-center justify-center gap-1 text-white">
-        <Camera className="w-5 h-5" />
-        <span className="text-[11.5px] font-medium">
-          {avatarUrl ? 'Replace photo' : 'Upload photo'}
-        </span>
-      </div>
-
-      {avatarUrl && (
-        <button
-          type="button"
-          onClick={handleClearAvatar}
-          aria-label="Revert to SB monogram"
-          title="Revert to SB monogram"
-          className="absolute top-2 right-2 w-7 h-7 rounded-full bg-[#1E1C1A]/75 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer hover:bg-[#1E1C1A]"
-        >
-          <RotateCcw className="w-3.5 h-3.5" />
-        </button>
-      )}
+      <img
+        src={PROFILE_PHOTO_SRC}
+        alt={CANDIDATE_PROFILE.name}
+        className="w-full h-full object-cover object-[50%_18%]"
+      />
     </div>
   );
 
@@ -184,15 +98,6 @@ export default function App() {
     <>
       <div className="screen-only-app portfolio-shell">
         <main className="w-full max-w-[1288px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 space-y-6 sm:space-y-8">
-          {/* Hidden Avatar File Input */}
-          <input
-            ref={avatarInputRef}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleAvatarFileChange}
-            aria-label="Upload portrait photo"
-          />
 
           {/* ======================== 1. HERO & ALIGNED PHOTOGRAPH ======================== */}
           <section

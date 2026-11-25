@@ -342,14 +342,14 @@ export const INDEPENDENT_DOCUMENTARY_PROJECT: {
   description: string;
   links: DocumentaryLink[];
 } = {
-  eyebrow: 'Humans of Samui',
-  title: 'Independent Documentary Project',
+  eyebrow: 'Independent Documentary Project',
+  title: 'Beyond the CV',
   description:
-    'I’m endlessly curious about people, cultures and the stories behind the people I meet. Alongside my operations and AI work, I produce an independent documentary project capturing real human stories.',
+    'I love traveling and I’m endlessly curious about people, cultures and the stories behind the people I meet. Alongside my operations and AI work, I produce an independent documentary project capturing real human stories which is called Humans.',
   links: [
     {
       id: 'website',
-      label: 'Explore the project',
+      label: 'Explore Humans',
       subtitle: 'web-coconuts.com/humans',
       url: 'https://www.web-coconuts.com/humans',
     },

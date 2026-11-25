@@ -1,0 +1,25 @@
+version = 1
+name = "ElevenLabs Interactive CV"
+
+[setup]
+script = "node scripts/workflow.mjs setup"
+
+[[actions]]
+name = "Safe sync"
+icon = "tool"
+command = "node scripts/workflow.mjs sync"
+
+[[actions]]
+name = "Local preview"
+icon = "run"
+command = "node scripts/workflow.mjs dev"
+
+[[actions]]
+name = "Test and build"
+icon = "test"
+command = "npm run verify"
+
+[[actions]]
+name = "Prepare publishing"
+icon = "tool"
+command = "node scripts/workflow.mjs release"

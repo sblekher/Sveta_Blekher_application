@@ -1,0 +1,28 @@
+{
+  "projectUrl": "https://aistudio.google.com/apps/1ebbb1e2-2928-44fc-97cc-6e2f666b8e2e",
+  "exportDate": "2026-11-25",
+  "source": "Original app Download as .zip file",
+  "githubBase": "9201223309a5f2853daa7edd76d59b274f25fc8e",
+  "sha256": {
+    "public/assets/aistudio/Sveta_Blekher_ElevenLabs_Marketplace_Operations_Editable_ef85aff5.md": "ef85aff535013aef3321f61bd21bc01d65c91766a4e1f3d6b0b89d5bbe77c21d",
+    "src/index.css": "5da976762fc065e306a0cb74b5a362b0ff94f0194164e855ef8c0311f0e3ce63",
+    "src/main.tsx": "30d02ee59cb6576973dea4368093b2dcae692a40668f288fdbc66a114873fcd3",
+    "src/App.tsx": "7b5cd3d2cef1167faf2d12ccf76e3cdde4fdef342a2954f70f2b41447d52b578",
+    "src/components/BentoCards.tsx": "5f532bdbb6165bf2746450090c5d65e789b6163e8b83fd48d6f0677bac98ada7",
+    "src/hooks/useMasterClock.ts": "8ba8e4299786f0c644d310ca0662381f05f0a690d59decf8b53c81d299e691f6",
+    "src/utils/audioStorage.ts": "83fa416408bc6161960543bc47181ef827a5c89b8ac8a3aad80a512853c4b2ab",
+    "src/components/FullCvDrawer.tsx": "65d9fb978c3464d2a731f0fad48a84da2660c5e528bec238b20aa7fd93b32051",
+    "src/components/VoiceNoteBar.tsx": "c633238887fcba6080183e32353251800510b7c4ced207ebc5f44b242a7e91dc",
+    "src/data/cvData.ts": "d8e1710b4bd39b94fb921ff874abbf95745c848b7ce8e7b688245b76a1d2863c",
+    "public/assets/aistudio/ElevenLabs_2026-11-25T07_09_43_Sveta_Personal_ivc_s50_sim100_v4_e533cc41.mp3": "e533cc41950d82b6503a7fff1af898607d5236bda146e616090e54e3193a385f",
+    "public/assets/aistudio/ElevenLabs_2026-11-25T07_17_07_Sveta_Personal_ivc_s50_sim100_v4_288bde0f.mp3": "288bde0f1a247fa42a0dabbe9add63b23b26b3cfd59ee7aaa60516dbad20ac0f",
+    "public/assets/aistudio/ElevenLabs_2026-11-25T07_15_31_Sveta_Personal_ivc_s50_sim100_v4_370ba7f1.mp3": "370ba7f1db4f3335d0cf00563ef0a2dd49908dfa6cd20cdd4c178a2d0bae9f91",
+    "public/assets/aistudio/ElevenLabs_2026-11-25T07_13_46_Sveta_Personal_ivc_s50_sim100_v4_770a7fea.mp3": "770a7fea77d6d52f8c3d59d3de5e18726ebe1eb617701629949cd588bceccd6e",
+    "src/data/portfolioData.ts": "ff4da33920eb8ef5b351f798dfdd40d9a09f499d7a497db6555d97efb72a644d",
+    "src/components/AiProjectsSection.tsx": "2d462b4f0538e1e701c861894ceebd61ff7b97985038bec963e6c560b71ed4d1",
+    "src/components/GlobalOpsAndBeyond.tsx": "1755cc795a14c3b9d9821e3b315631b168ecf8e800220619c3b7a770bfb9e6f2",
+    "public/assets/aistudio/image_d964c25b.png": "d964c25b07dc9fe9c84f9e4320f0e7afc9e015c7056f8147409de56373d6ab80",
+    "public/assets/aistudio/image_fe652901.png": "fe652901a22c4a698dc859c5a761afd5a7b17851107c01d4070f19854ed306ee",
+    "public/assets/aistudio/Warm_Veranda_Portrait_of_a_Smiling_Woman_c21f8431.png": "c21f84310bcf99ee561b87ed080e69177c8f2cc67dcb046333366e92ffd49f7b"
+  }
+}
