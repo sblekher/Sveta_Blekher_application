@@ -1,0 +1,8 @@
+{
+  "name": "Sveta Blekher — Localization & Marketplace Operations CV",
+  "description": "Interactive editorial bento CV for Sveta Blekher tailored to ElevenLabs Marketplace Operations (Productions), featuring a multilingual localizable voice pitch, proven global localization metrics, AI workflows, and a full printable resume.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

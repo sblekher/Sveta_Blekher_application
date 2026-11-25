@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #eeece8;
+  --surface: #f5f3ef;
+  --surface-elevated: #faf9f6;
+  --surface-chip: #e9e6e1;
+  --hairline: rgba(0, 0, 0, 0.07);
+  --hairline-strong: rgba(0, 0, 0, 0.13);
+  --ink: #1e1c1a;
+  --ink-secondary: #77736e;
+  --ink-muted: #a7a39d;
+  --accent: #ee6a1f;
+  --accent-soft: rgba(238, 106, 31, 0.12);
+  --status-open: #3bc45e;
+  --segment-dark: #2a2624;
+  --card-shadow: 0 1px 2px rgba(30, 28, 26, 0.03), 0 6px 18px rgba(30, 28, 26, 0.03);
+  --card-shadow-hover: 0 4px 12px rgba(30, 28, 26, 0.06), 0 14px 28px rgba(30, 28, 26, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', 'IBM Plex Sans Hebrew', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.font-mono-tabular {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Responsive editorial portfolio page wrapper */
+.portfolio-shell {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--canvas);
+}
+
+/* Editorial card surface & quiet hover lift */
+.bento-card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  box-shadow: var(--card-shadow);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(0, 0, 0, 0.11);
+}
+
+/* Subtle user-triggered slide fade for manual Proven Impact navigation */
+@keyframes impactSlideIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.impact-slide-enter {
+  animation: impactSlideIn 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reduced motion: keep everything settled and static */
+@media (prefers-reduced-motion: reduce) {
+  .bento-card,
+  .bento-card:hover {
+    transition: none;
+    transform: none;
+  }
+
+  .impact-slide-enter {
+    animation: none;
+  }
+}
+
+/* Dedicated clean Print / PDF layout */
+.print-only-cv {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 15mm;
+  }
+
+  html,
+  body,
+  #root {
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  .screen-only-app {
+    display: none !important;
+  }
+
+  .print-only-cv {
+    display: block !important;
+    background: #ffffff !important;
+    color: #1e1c1a !important;
+    font-family: 'IBM Plex Sans', sans-serif !important;
+  }
+}
